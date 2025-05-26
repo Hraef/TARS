@@ -16,7 +16,7 @@ This project is inspired by TARS from Interstellar. Ideally this would be able t
 import whisper 
 model = whisper.load_model("base")
 ```
-- Chat enginer (AI)
+- Chat engine (AI)
   - llama.cpp or Mistral (currently leaning to Mistral)
   - https://ollama.com/library/mistral
 - Text-to-Speech
