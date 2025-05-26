@@ -1,1 +1,0 @@
-## Where ollama mistral will be located/initiated 
