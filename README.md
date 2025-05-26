@@ -10,8 +10,8 @@ This project is inspired by TARS from Interstellar. Ideally this would be able t
 
 ## Tools
 - Whisper
-  - can be used offline ```import whisper
-model = whisper.load_model("base")```
+  - can be used offline ```import whisper```
+  ```model = whisper.load_model("base")```
   - https://github.com/openai/whisper
 - Chat enginer (AI)
   - llama.cpp or Mistral (currently leaning to Mistral)
