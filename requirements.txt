@@ -1,0 +1,4 @@
+pyaudio
+pyttsx3
+ollama
+git+https://github.com/openai/whisper.git
