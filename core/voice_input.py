@@ -257,35 +257,3 @@ class VoiceInput:
         except:
             pass
 
-
-# Convenience function for quick testing
-def quick_transcribe(model_size: str = "base") -> str:
-    """
-    Quick function to record and transcribe audio.
-    
-    Args:
-        model_size: Whisper model size to use.
-        
-    Returns:
-        Transcribed text.
-    """
-    voice_input = VoiceInput(model_size)
-    try:
-        return voice_input.record_and_transcribe()
-    finally:
-        voice_input.cleanup()
-
-
-if __name__ == "__main__":
-    # Simple test when running this file directly
-    print("TARS Voice Input Test")
-    print("====================")
-    
-    try:
-        text = quick_transcribe()
-        print(f"\nFinal transcription: '{text}'")
-    except KeyboardInterrupt:
-        print("\nTest interrupted by user.")
-    except Exception as e:
-        print(f"Error during test: {e}")
-
