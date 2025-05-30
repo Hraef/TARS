@@ -3,7 +3,7 @@
 TARS - AI Assistant inspired by Interstellar
 Main application file that orchestrates voice input, AI processing, and voice output.
 """
-
+from core.engine import query_local_llm
 import sys
 import os
 
@@ -80,6 +80,13 @@ class TARS:
             Response string
         """
         command_lower = command.lower().strip()
+
+        try:
+            response = self.engine.chat(command)
+            if response:
+                return response
+        except Exception as e:
+            print(f"⚠️  Error querying AI engine: {e}. Reverting to basic responses.")
         
         # Basic command responses for Phase 1
         if "hello" in command_lower or "hi" in command_lower:
