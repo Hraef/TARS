@@ -1,15 +1,10 @@
-## handles voice input and processing
-## loads whisper
-## transcribes audio to text
-
 import whisper
 import os
 import wave
 import tempfile
 import threading
-from typing import Optional
 import contextlib
-import io
+from typing import Optional
 
 # Simple error suppression for PyAudio import
 @contextlib.contextmanager
