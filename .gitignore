@@ -14,7 +14,9 @@ __pycache__/
 
 
 
-
+tars_audio_samples/
+tars_generated_audio/
+tars_env/
 
 
 
