@@ -25,24 +25,27 @@ def suppress_audio_errors():
 # Use the suppression when importing audio-related modules
 with suppress_audio_errors():
     from core.voice_input import VoiceInput
+    from core.voice_output import VoiceOutput
 
 
 class TARS:
     """Main TARS AI Assistant class."""
     
-    def __init__(self, whisper_model: str = "base"):
+    def __init__(self, whisper_model: str = "base", llm_model: str = "mistral"):
         """
-        Initialize TARS with voice capabilities.
+        Initialize TARS with voice capabilities and LLM integration.
         
         Args:
             whisper_model: Whisper model size to use for voice recognition
+            llm_model: Ollama model to use for LLM processing
         """
         print("🤖 Initializing TARS...")
         self.voice_input = VoiceInput(model_size=whisper_model)
+        self.voice_output = VoiceOutput(model=llm_model)
         print("✅ TARS is ready!")
     
     def listen_and_respond(self):
-        """Listen for voice input and provide a basic response."""
+        """Listen for voice input and provide an AI-powered response."""
         try:
             print("\n" + "="*50)
             print("🎤 TARS is listening...")
@@ -55,9 +58,12 @@ class TARS:
             if user_input:
                 print(f"\n🧠 TARS heard: '{user_input}'")
                 
-                # Basic response logic (Phase 1 - simple responses)
-                response = self.process_command(user_input)
+                # Process through LLM and get spoken response
+                response = self.voice_output.process_voice_input_and_respond(user_input, speak_response=True)
                 print(f"🤖 TARS responds: {response}")
+                
+                # Wait for speech to complete before continuing
+                self.voice_output.wait_for_speech_completion()
                 
                 return user_input, response
             else:
@@ -143,6 +149,8 @@ class TARS:
         print("\n🧹 Cleaning up TARS...")
         if hasattr(self, 'voice_input'):
             self.voice_input.cleanup()
+        if hasattr(self, 'voice_output'):
+            self.voice_output.cleanup()
         print("✅ TARS shutdown complete.")
 
 
